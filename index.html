@@ -1,1 +1,29 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>A demonstration of how to access a BUTTON element</h3>
+
+<p>Click to disable the BUTTON element:</p>
+
+<button type="button" id="myBtn" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "localhost:9080", true);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+      eventAction: "event_name",
+      parameters: {
+        "key": "value",
+        "key2": "value2"
+      }
+  }));
+}
+</script>
+
+</body>
+</html>
