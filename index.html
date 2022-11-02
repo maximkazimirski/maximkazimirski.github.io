@@ -6,8 +6,8 @@
 
 <p>Click to disable the BUTTON element:</p>
 
-<button type="button" id="myBtn" onclick="myFunction('http://0.0.0.0:9080/magic')">Try http://0.0.0.0:9080</button>
-<button type="button" id="myBtn" onclick="myFunction('http://localhost:9080/magic')">Try http://localhost:9080</button>
+<button type="button" id="myBtn" onclick="myFunction('https://0.0.0.0:9000/data')">Try https://0.0.0.0:9000/data</button>
+<button type="button" id="myBtn" onclick="myFunction('https://localhost:9000/data')">Try https://localhost:9000/data</button>
 
 <p id="result"></p>
 
@@ -24,7 +24,7 @@ function myFunction(host) {
   }
 
   xhr.send(JSON.stringify({
-      eventAction: "event_name",
+      eventAction: "Test_event",
       parameters: {
         "key": "value",
         "key2": "value2"
