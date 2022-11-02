@@ -6,12 +6,19 @@
 
 <p>Click to disable the BUTTON element:</p>
 
-<button type="button" id="myBtn" onclick="myFunction('https://0.0.0.0:9000/data')">Try https://0.0.0.0:9000/data</button>
-<button type="button" id="myBtn" onclick="myFunction('https://localhost:9000/data')">Try https://localhost:9000/data</button>
-
+<button type="button" id="myBtn1" onclick="myFunction('https://0.0.0.0:9000/data')">Try https://0.0.0.0:9000/data</button>
+<button type="button" id="myBtn2" onclick="myFunction('https://localhost:9000/data')">Try https://localhost:9000/data</button>
+<button type="button" id="myBtn3" onclick="openURL('_self')">openURL _self</button>
+<button type="button" id="myBtn4" onclick="openURL('_blank')">openURL _blank</button>
+<button type="button" id="myBtn5" onclick="openURL('_parent')">openURL _parent</button>
+<button type="button" id="myBtn6" onclick="openURL('_top')">openURL _top</button>
 <p id="result"></p>
 
 <script>
+function openURL(target) {
+  window.open('teledemoapp://testhost?key=value', target);
+};
+
 function myFunction(host) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", host, true);
