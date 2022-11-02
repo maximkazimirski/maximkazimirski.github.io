@@ -6,14 +6,15 @@
 
 <p>Click to disable the BUTTON element:</p>
 
-<button type="button" id="myBtn" onclick="myFunction()">Try it</button>
+<button type="button" id="myBtn" onclick="myFunction('http://0.0.0.0:9080/magic')">Try http://0.0.0.0:9080</button>
+<button type="button" id="myBtn" onclick="myFunction('http://localhost:9080/magic')">Try http://localhost:9080</button>
 
 <p id="result"></p>
 
 <script>
 function myFunction() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://0.0.0.0:9080/magic", true);
+  xhr.open("POST", host, true);
   xhr.setRequestHeader('Content-Type', 'application/json');
 
   xhr.onreadystatechange = () => {
