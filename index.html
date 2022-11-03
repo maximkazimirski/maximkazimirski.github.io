@@ -1,45 +1,100 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-<h3>A demonstration of how to access a BUTTON element</h3>
-
-<p>Click to disable the BUTTON element:</p>
-
-<button type="button" id="myBtn1" onclick="myFunction('https://0.0.0.0:9000/data')">Try https://0.0.0.0:9000/data</button>
-<button type="button" id="myBtn1" onclick="myFunction('https://127.0.0.1:9000/data')">Try https://127.0.0.1:9000/data</button>
-<button type="button" id="myBtn2" onclick="myFunction('https://localhost:9000/data')">Try https://localhost:9000/data</button>
-<button type="button" id="myBtn3" onclick="openURL('_self')">openURL _self</button>
-<button type="button" id="myBtn4" onclick="openURL('_blank')">openURL _blank</button>
-<button type="button" id="myBtn5" onclick="openURL('_parent')">openURL _parent</button>
-<button type="button" id="myBtn6" onclick="openURL('_top')">openURL _top</button>
-<p id="result"></p>
-
-<script>
-function openURL(target) {
-  window.open('teledemoapp://testhost?key=value', target);
-};
-
-function myFunction(host) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", host, true);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === XMLHttpRequest.DONE) {
-      document.getElementById("result").innerHTML = xhr.responseText;
-    }
-  }
-
-  window.fetch(host, {method: 'POST', body: JSON.stringify({
-      eventAction: "Test_event",
-      parameters: {
-        "key": "value",
-        "key2": "value2"
+  <head>
+    <style>
+      .btn-group button {
+        background-color: #04aa6d; /* Green background */
+        border: 1px solid green; /* Green border */
+        color: white; /* White text */
+        padding: 10px 24px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        width: 50%; /* Set a width if needed */
+        display: block; /* Make the buttons appear below each other */
       }
-  }), mode:'no-cors'})
-}
-</script>
 
-</body>
+      .btn-group button:not(:last-child) {
+        border-bottom: none; /* Prevent double borders */
+      }
+
+      /* Add a background color on hover */
+      .btn-group button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="btn-group">
+      <button
+        type="button"
+        id="myBtn1"
+        onclick="myFunction('https://0.0.0.0:9000/data')"
+      >
+        Try https://0.0.0.0:9000/data
+      </button>
+      <button
+        type="button"
+        id="myBtn1"
+        onclick="myFunction('https://127.0.0.1:9000/data')"
+      >
+        Try https://127.0.0.1:9000/data
+      </button>
+      <button
+        type="button"
+        id="myBtn2"
+        onclick="myFunction('https://localhost:9000/data')"
+      >
+        Try https://localhost:9000/data
+      </button>
+      <button type="button" id="myBtn3" onclick="openURL('_self')">
+        openURL _self
+      </button>
+      <button type="button" id="myBtn4" onclick="openURL('_blank')">
+        openURL _blank
+      </button>
+      <button type="button" id="myBtn5" onclick="openURL('_parent')">
+        openURL _parent
+      </button>
+      <button type="button" id="myBtn6" onclick="openURL('_top')">
+        openURL _top
+      </button>
+      <button type="button" id="myBtn7" onclick="sendMessage()">
+        post a message
+      </button>
+    </div>
+
+    <script>
+      function sendMessage() {
+        const message = { key: "value" };
+        window.postMessage(message, "*");
+      }
+
+      function openURL(target) {
+        window.open("teledemoapp://testhost?key=value", target);
+      }
+
+      function myFunction(host) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", host, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            document.getElementById("result").innerHTML = xhr.responseText;
+          }
+        };
+
+        window.fetch(host, {
+          method: "POST",
+          body: JSON.stringify({
+            eventAction: "Test_event",
+            parameters: {
+              key: "value",
+              key2: "value2",
+            },
+          }),
+          mode: "no-cors",
+        });
+      }
+    </script>
+  </body>
 </html>
