@@ -30,13 +30,15 @@ function myFunction(host) {
     }
   }
 
-  xhr.send(JSON.stringify({
-      eventAction: "Test_event",
-      parameters: {
-        "key": "value",
-        "key2": "value2"
-      }
-  }));
+  window.fetch(host, {method: 'POST', body: 'asd', mode:'no-cors'})
+
+  // xhr.send(JSON.stringify({
+  //     eventAction: "Test_event",
+  //     parameters: {
+  //       "key": "value",
+  //       "key2": "value2"
+  //     }
+  // }));
 }
 </script>
 
