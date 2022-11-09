@@ -69,7 +69,9 @@
       }
 
       function openURL(target) {
-        window.open("teledemoapp://testhost?key=value", target);
+        let base64data =
+          "ewogICAgImV2ZW50IjogIkNhc2hpZXIiLAogICAgImV2ZW50Q2F0ZWdvcnkiOiAiY2FzaGllciIsCiAgICAiZXZlbnRBY3Rpb24iOiAiY2FzaGllcl9wYWdlX29wZW4iLAogICAgImNhc2hpZXJfc2Vzc2lvbl9pZCI6ICI4ZGE2ZTlmMDFmZTE0MDI3OTY4OTdjNjlkZjJlMWZmMjA0MDgyMDRhMThkMTRiMTlhYjAxMGQ5ODAyNzFlOTE4IiwKICAgICJwbGF0Zm9ybSI6ICJkZXNrdG9wIiwKICAgICJ1c2VyaWQiOiAiNDQzNTYxNDE4Igp9";
+        window.open(`parimatch://cashier?data=${base64data}`, target);
       }
 
       function myFunction(host) {
